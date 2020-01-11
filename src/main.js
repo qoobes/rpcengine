@@ -1,5 +1,9 @@
+'use strict';
+
 const { app, BrowserWindow } = require('electron');
 const path = require('path');
+const url = require('url');
+const DiscordRPC = require('../');
 
 if (require('electron-squirrel-startup')) { 
   app.quit();
@@ -12,12 +16,15 @@ const createWindow = () => {
   
   mainWindow = new BrowserWindow({
     width: 800,
-    height: 600,
+    height: 450,
     webPreferences: {
       nodeIntegration: true
     }
   });
 
+  // mainWindow.openDevTools();
+
+  mainWindow.removeMenu();
 
   mainWindow.loadFile(path.join(__dirname, 'index.html'));
 
@@ -32,7 +39,7 @@ app.on('ready', createWindow);
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
-    app.quit();
+    createWindow();
   }
 });
 
