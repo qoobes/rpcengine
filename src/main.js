@@ -1,3 +1,4 @@
+
 'use strict';
 
 const { app, BrowserWindow, ipcMain } = require('electron');
@@ -12,7 +13,6 @@ if (require('electron-squirrel-startup')) {
 let mainWindow;
 
 const createWindow = () => {
-  
   
   mainWindow = new BrowserWindow({
     width: 800,
@@ -60,21 +60,21 @@ const startTimestamp = new Date();
 
 async function setActivity() {
   if (!rpc || !mainWindow) {
-    console.log("Whoopzee!");
+    console.log(!mainWindow ? "truerror" : "falserror");
     return;
   }
 }
 
 ipcMain.on('simple', (event, args) => {
   var timestamp = args.timer == false ? undefined : startTimestamp;
-  
+  console.log(args.text1);
   rpc.setActivity({
     details: args.text1,
     state: args.text2,
-    timestamp,
+    startTimestamp,
     largeImageKey: args.imagelg,
     smallImageKey: args.imagesm,
-    instance: false
+    instance: false,
   });
 
 

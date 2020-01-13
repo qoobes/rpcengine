@@ -2,8 +2,12 @@ console.log("Initialized app");
 const $ = require('jquery');
 const ipcRenderer = require('electron').ipcRenderer;
 var text1, text2, imagelg, imagesm, timer;
-text1 = "thatniga";
+
 function enrich() {
+	if ($("#text1").val().length < 2 || $("#text2").val().length < 2) { 
+		console.log("lolfail"); 
+		return; }
+	 
 	text1 = $("#text1").val();
 	text2 = $("#text2").val();
 	imagelg = $("#imagelg").val() == 'No Large Image' ? false : $("#imagelg").val();
