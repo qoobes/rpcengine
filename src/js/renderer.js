@@ -10,7 +10,7 @@ function enrich() {
 	imagesm = $("#imagesm").val() == 'No Small Image' ? false : $("#imagesm").val();
 	timer = $("#timer").val() == 'Yes Timer' ? true : false; 
 
-	ipcRenderer.send('vars', { text1, text2, imagelg, imagesm, timer });
+	ipcRenderer.send('simple', { text1, text2, imagelg, imagesm, timer });
 
 }
 

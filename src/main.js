@@ -65,7 +65,7 @@ async function setActivity() {
   }
 }
 
-ipcMain.on('vars', (event, args) => {
+ipcMain.on('simple', (event, args) => {
   var timestamp = args.timer == false ? undefined : startTimestamp;
   
   rpc.setActivity({
