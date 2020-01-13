@@ -1,9 +1,9 @@
 'use strict';
 
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('path');
 const url = require('url');
-const DiscordRPC = require('../');
+const DiscordRPC = require('discord-rpc');
 
 if (require('electron-squirrel-startup')) { 
   app.quit();
@@ -22,7 +22,7 @@ const createWindow = () => {
     }
   });
 
-  // mainWindow.openDevTools();
+  mainWindow.openDevTools();
 
   mainWindow.removeMenu();
 
@@ -50,3 +50,44 @@ app.on('activate', () => {
   }
 
 });
+
+
+const clientId = '180984871685062656';
+DiscordRPC.register(clientId);
+
+const rpc = new DiscordRPC.Client( { transport: 'ipc' } );
+const startTimestamp = new Date();
+
+async function setActivity() {
+  if (!rpc || !mainWindow) {
+    console.log("Whoopzee!");
+    return;
+  }
+}
+
+ipcMain.on('vars', (event, args) => {
+  var timestamp = args.timer == false ? undefined : startTimestamp;
+  
+  rpc.setActivity({
+    details: args.text1,
+    state: args.text2,
+    timestamp,
+    largeImageKey: args.imagelg,
+    smallImageKey: args.imagesm,
+    instance: false
+  });
+
+
+});
+
+rpc.on('ready', () => {
+  setActivity();
+
+
+  setInterval(() => {
+    setActivity();
+
+  }, 15e3);
+});
+
+rpc.login({ clientId }).catch(console.error);
