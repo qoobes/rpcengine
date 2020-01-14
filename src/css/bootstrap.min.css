@@ -5362,10 +5362,14 @@ a.bg-warning:focus, a.bg-warning:hover, button.bg-warning:focus, button.bg-warni
     background-color: #d39e00!important;
 }
 .bg-danger {
-    background-color: #dc3545!important;
+    background-color: rgba(237, 95, 73, 0.7)!important;
+    border: none;
+    color:  white !important;
 }
 a.bg-danger:focus, a.bg-danger:hover, button.bg-danger:focus, button.bg-danger:hover {
-    background-color: #bd2130!important;
+    background-color: rgba(237, 95, 73, 0.7)!important;
+    border: none;
+    color:  white !important;
 }
 .bg-light {
     background-color: #f8f9fa!important;
@@ -8172,4 +8176,3 @@ body {
     border-color: #dee2e6;
 }
 }
-/*# sourceMappingURL=bootstrap.min.css.map */

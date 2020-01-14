@@ -6,111 +6,74 @@
     <meta name="description" content="">
     <meta name="author" content="theqoobe">
     <title>RPC | Engine</title>
-    <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
-    <!-- Custom fonts for this template -->
     <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-    <!-- Custom styles for this template -->
     <link href="css/style.css" rel="stylesheet">
     <script src="js/renderer.js"></script>
   </head>
   <body >
-    <!-- Navigation -->
-    
-    
     <header class="masthead" style="padding: 1rem">
       <div class="row mb-2">
         <div class="col-3">
-          <h4 class="text-monospace text-white font-weight-bold" style="background-color: rgba(200, 200, 200, 0.3); padding: 0.5rem;">RPC | <br>Engine</h4>
+          <h4 class="text-monospace text-white font-weight-bold" id="ico" style="background-color: rgba(100, 100, 100, 0.4); padding: 0.5rem; border-radius: 2px;">RPC | <br>Engine</h4>
         </div>
         
       </div>
       <div class="row mt-5">
         <div class="col-6">
-          
-          <!-- <form class="form-inline d-flex mt-3"> -->
-
-            <input type="text" placeholder="Text line 1" class="form-control flex-fill" id="text1">
-            
-           
-          
-          <!-- </form> -->
+          <input type="text" id="text1" placeholder="Text line 1" class="form-control flex-fill white" >
         </div>
         <div class="col-6">
-          <input type="text" placeholder="Text line 2" class="form-control flex-fill" id="text2">
-           
+          <input type="text" placeholder="Text line 2" class="form-control flex-fill white" id="text2">
+          
           
         </div>
       </div>
-
       <div class="row mt-5">
         <div class="col-3">
-           <select id="imagelg" class="form-control">
-              <option>No Large Image</option>
-              <option>snek_large</option>
-              <option>Sublime</option>
-              <option>Visual Studio</option>
-              <option>Intellij</option>
-              <option>HTML</option>
-              <option>CSS</option>
-              <option>CSS</option>
-
-            </select>
+          <select id="imagelg" class="form-control">
+            <option>No Large Image</option>
+            <option>snek_large</option>
+            <option>Sublime</option>
+            <option>Visual Studio</option>
+            <option>Intellij</option>
+            <option>HTML</option>
+            <option>CSS</option>
+            <option>CSS</option>
+          </select>
         </div>
         <div class="col-3">
-           <select id="imagesm" class="form-control">
-              <option>No Small Image</option>
-              <option>snek_large</option>
-              <option>Sublime</option>
-              <option>Visual Studio</option>
-              <option>Intellij</option>
-              <option>HTML</option>
-              <option>CSS</option>
-              <option>CSS</option>
-
-            </select>
+          <select id="imagesm" class="form-control">
+            <option>No Small Image</option>
+            <option>snek_large</option>
+            <option>Sublime</option>
+            <option>Visual Studio</option>
+            <option>Intellij</option>
+            <option>HTML</option>
+            <option>CSS</option>
+            <option>CSS</option>
+          </select>
         </div>
         <div class="col-3">
-           <select id="timer" class="form-control">
-              <option>No Timer</option>
-              <option>Yes Timer</option>
-            </select>
+          <select id="timer" class="form-control">
+            <option>No Timer</option>
+            <option>Yes Timer</option>
+          </select>
         </div>
         <div class="col-3">
-           <button onclick="enrich()" class="btn btn-dark"> Enrich Presence</button>
-
+          <button onclick="enrich()" class="btn btn-dark"> Enrich Presence</button>
         </div>
       </div>
-
       <div class="row">
         <div class="col-9 ml-" >
           <div id="output">
-            <p class="text-monospace text-white small">Enter the values and press the button to start;</p>
+            <p class="text-monospace text-white small" id="textOutput">Enter the values and press the button to start;</p>
           </div>
         </div>
       </div>
-
       
     </header>
-    <!--
-    <form class="form-inline d-flex">
-      <input type="email" class="form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0" id="inputEmail" placeholder="Enter email address...">
-      <button type="submit" class="btn btn-primary mx-auto">Subscribe</button>
-    </form> -->
-    <!-- <div class="container-fluid">
-      <div class="col-2">
-        <h4 class="text-monospace text-white bg">RPC | Engine</h4>
-      </div>
-    </div>
-    <div class="container d-flex h-100 align-items-center">
-      <div class="mx-auto text-center">
-        <h1 class="mx-auto my-0 text-uppercase">Grayscale</h1>
-      
-        <a href="#about" class="btn btn-primary js-scroll-trigger">Get Started</a>
-      </div>
-    </div> -->
-    <!-- Footer -->
     <footer class="bg-black small text-center text-white-50">
       <div class="container">
         Copyright &copy; RPC|Engine 2020
