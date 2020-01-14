@@ -6,7 +6,6 @@ let changed = false;
 let status;
 var mode = 'Code';
 function enrich() {
-	// ipcRenderer.send('mode', 'code');
 	if ($("#text1").val().length < 2 || $("#text2").val().length < 2) { 
 		log("Please enter at least 2 characters", "error");
 		return; }
@@ -37,15 +36,9 @@ function enrich() {
 }
 
 $(document).ready( () => {
-   //Maybe, sometime into the future, maybe i shall add something here
-   
-
    window.addEventListener("keyup", (event) => {
-  // Number 13 is the "Enter" key on the keyboard
   if (event.keyCode === 13) {
-    // Cancel the default action, if needed
     event.preventDefault();
-    // Trigger the button element with a click
     $("#submit").click();
   }
 });

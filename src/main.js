@@ -26,8 +26,6 @@ const createWindow = () => {
         }
     });
 
-    mainWindow.openDevTools();
-
     mainWindow.removeMenu();
 
     mainWindow.loadFile(path.join(__dirname, 'index.html'));
@@ -43,7 +41,7 @@ app.on('ready', createWindow);
 
 app.on('window-all-closed', () => {
     if (process.platform !== 'darwin') {
-        createWindow();
+      app.quit();
     }
 });
 
@@ -63,7 +61,6 @@ const rpc = new DiscordRPC.Client({ transport: 'ipc' });
 
 
 const startTimestamp = new Date();
-// var timestamp;
 
 async function setActivity() {
     if (!rpc || !mainWindow) {
