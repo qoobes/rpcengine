@@ -1,7 +1,7 @@
 {
   "name": "rpcengine",
   "productName": "rpcengine",
-  "version": "1.0.0",
+  "version": "0.0.5",
   "description": "My Electron application description",
   "main": "src/main.js",
   "scripts": {
@@ -45,6 +45,14 @@
         {
           "name": "@electron-forge/maker-rpm",
           "config": {}
+        },
+        {
+          "name": "@electron-forge/maker-squirrel",
+          "config": {
+            "name": "rpcengine",
+            "certificateFile": "./cert.pfx",
+            "certificatePassword": "password"
+          }
         }
       ]
     }

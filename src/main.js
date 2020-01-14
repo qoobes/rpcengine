@@ -9,6 +9,7 @@ const path = require('path');
 const url = require('url');
 const DiscordRPC = require('discord-rpc');
 var init = false;
+
 if (require('electron-squirrel-startup')) {
     app.quit();
 }
