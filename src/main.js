@@ -69,29 +69,28 @@ async function setActivity() {
         return;
     }
 }
-
 ipcMain.on('simple', (event, args) => {
     init = true;
-    var timestamp = args.timer === true ? startTimestamp : undefined;
-    if (args.timer) { 
-      // timestamp = new Date();
-      const timestamp = startTimestamp
-
-    } else {
-      
-      timestamp = undefined; 
-    
-    }
+ 
 
     try {
-        rpc.setActivity({
-            details: args.text1,
-            state: args.text2,
-            timestamp,
-            largeImageKey: args.imagelg,
-            smallImageKey: args.imagesm,
-            instance: false,
-        });
+      if (args.timer){
+              rpc.setActivity({
+                  details: args.text1,
+                  state: args.text2,
+                  startTimestamp,
+                  largeImageKey: args.imagelg,
+                  smallImageKey: args.imagesm,
+                  instance: false,
+              });} else {
+                rpc.setActivity({
+                  details: args.text1,
+                  state: args.text2,
+                  largeImageKey: args.imagelg,
+                  smallImageKey: args.imagesm,
+                  instance: false,
+              });
+              }
     } catch(err) {
         event.returnValue = 'Something went wrong! ' + err.message;
     }
