@@ -10,6 +10,9 @@ const url = require('url');
 const DiscordRPC = require('discord-rpc');
 var init = false;
 
+process.env.NODE_ENV = 'production';
+
+
 if (require('electron-squirrel-startup')) {
     app.quit();
 }
