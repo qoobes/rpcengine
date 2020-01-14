@@ -55,14 +55,14 @@ app.on('activate', () => {
 });
 
 
-const clientId = '180984871685062656';
+const clientId = '665244956805300274';
 DiscordRPC.register(clientId);
 
-const rpc = new DiscordRPC.Client({
-    transport: 'ipc'
-});
-const startTimestamp = new Date();
+const rpc = new DiscordRPC.Client({ transport: 'ipc' });
 
+
+const startTimestamp = new Date();
+// var timestamp;
 
 async function setActivity() {
     if (!rpc || !mainWindow) {
@@ -72,13 +72,22 @@ async function setActivity() {
 
 ipcMain.on('simple', (event, args) => {
     init = true;
-    var timestamp = args.timer == false ? undefined : startTimestamp;
+    var timestamp = args.timer === true ? startTimestamp : undefined;
+    if (args.timer) { 
+      // timestamp = new Date();
+      const timestamp = startTimestamp
+
+    } else {
+      
+      timestamp = undefined; 
+    
+    }
 
     try {
         rpc.setActivity({
             details: args.text1,
             state: args.text2,
-            startTimestamp,
+            timestamp,
             largeImageKey: args.imagelg,
             smallImageKey: args.imagesm,
             instance: false,
@@ -86,14 +95,15 @@ ipcMain.on('simple', (event, args) => {
     } catch(err) {
         event.returnValue = 'Something went wrong! ' + err.message;
     }
-    event.returnValue = true;
+    event.returnValue =  { success: true, user: username };
 
 });
 
+var username;
 rpc.on('ready', () => {
+username = rpc.user.username + "#" + rpc.user.discriminator;
+    
     setActivity();
-
-
     setInterval(() => {
         setActivity();
 

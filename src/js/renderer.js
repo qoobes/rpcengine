@@ -16,13 +16,13 @@ function enrich() {
 	timer = $("#timer").val() == 'Yes Timer' ? true : false; 
 
 	status = ipcRenderer.sendSync('simple', { text1, text2, imagelg, imagesm, timer });
-	if (status === true) {
+	if (status.success === true) {
 		if (changed) {
 			changed = false;
 			change();
 		}
+			log(`Successfuly connected for <strong>${status.user}</strong>`)
 		
-		log("Successfully connected to user!");
 	} else {
 		document.write(
 		`<h1>A serious error has occured</h1>`,
@@ -50,4 +50,11 @@ function change() {
 function log(text, type) {
 	$("#textOutput").replaceWith(`<p class="text-monospace text-white" id="textOutput">${text};</p>`);
 	if (type === "error" && !changed) {change(); changed = true;};
-}	
+}
+
+
+ipcRenderer.on('name', (event, args) => {
+	console.log(args);
+
+
+});
