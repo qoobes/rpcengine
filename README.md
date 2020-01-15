@@ -24,10 +24,65 @@ Discord Rich Presence, or RCP for short, is a way to show off what you're doing 
 
 ## Getting Started
 
-Rcpengine is made in a way that basically anyone can use it and have a good time. 
+Rcpengine is made in a way that basically anyone can use it and have a good time. [TODO: Add the goddamn settings]
 
 ### Installation
 
+#### Download the installer for your platform from [here](https://github.com/theqoobee/rpcengine/releases) and follow the very simple instructions to install it!  
+
+## List of features 
+Change the details and status of your richpresence
+An optional timer to show how long you've been active
+Optionally set any of the following images in your richpresence
+
+```
+Android Studio
+Apple
+Arch Linux
+Atom
+Cat
+Chibi
+Chrome
+C++
+Darkness
+Deku
+Discord
+Electron
+Elm
+Facebook
+Github
+Gitlab
+Google
+Google Music
+Instagram
+Intellij IDEA
+Java
+Javascript
+Kubernetes
+Linux
+Megu
+Megu1
+Music
+Naruto sleep
+Naruto small 
+Node.js
+Php
+Poopy
+Python
+Rem
+Ruby
+Sasuke
+Shell
+Swift
+Tanjiro
+Todoroki
+Visual Studio
+VSCode
+Webstorm
+Windows
+XCode
+Youtube
+```
 
 
 ## License
