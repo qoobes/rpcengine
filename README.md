@@ -6,6 +6,7 @@
   	<a href="https://travis-ci.com/theqoobee/rpcengine"><img src="https://travis-ci.com/theqoobee/rpcengine.svg?branch=master"></a>
     <a href="https://www.npmjs.com/package/discord.js"><img src="https://img.shields.io/npm/v/discord.js.svg?maxAge=3600" alt="NPM version" /></a>
     <a href="https://david-dm.org/theqoobee/rpcengine"><img src="https://img.shields.io/david/theqoobee/rpcengine.svg?maxAge=3600" alt="Dependencies" /></a>
+    <a href="https://github.com/theqoobee/rpcengine/releases"><img src="https://img.shields.io/github/v/release/theqoobee/rpcengine" /></a>
   </p>
 
 </div>
