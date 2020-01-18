@@ -55,7 +55,7 @@ async function setActivity() {
 // finally, execute the setActivity() function only when rpc is ready
 
 rpc.on('ready', () => {
-  setActivity(); // execute the function
+  setActivity();
 
   setInterval(() => { // set an interval of 10 seconds
   	check(); // check if there's anything new, if so store the object
