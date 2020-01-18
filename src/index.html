@@ -16,23 +16,34 @@
   </head>
   <body >
     <header class="masthead" style="padding: 1rem">
-      <div class="row mb-2">
+      <div class="row mb-3">
         <div class="col-3">
           <h4 class="text-monospace text-white font-weight-bold" id="ico" style="background-color: rgba(100, 100, 100, 0.4); padding: 0.5rem; border-radius: 2px;">RPC | <br>Engine</h4>
         </div>
         
       </div>
-      <div class="row mt-5">
+
+      <div class="row mb-3">
         <div class="col-6">
-          <input type="text" id="text1" placeholder="Text line 1" class="form-control flex-fill white" >
+          <input type="text" id="text1" placeholder="Top text line" class="form-control flex-fill white" >
         </div>
         <div class="col-6">
-          <input type="text" placeholder="Text line 2" class="form-control flex-fill white" id="text2">
+          <input type="text" placeholder="Bottom text line" class="form-control flex-fill white" id="text2">
           
           
         </div>
       </div>
-      <div class="row mt-5">
+      <div class="row">
+        <div class="col-6">
+          <input type="text" id="imagelgText" placeholder="Large Image Text (optional)" class="form-control flex-fill white" >
+        </div>
+        <div class="col-6">
+          <input type="text" placeholder="Small Image Text (optional)" class="form-control flex-fill white" id="imagesmText">
+          
+          
+        </div>
+      </div>
+      <div class="row mt-3">
         <div class="col-3">
           <select id="imagelg" class="form-control">
             <option>No Large Image</option>
@@ -149,7 +160,7 @@
           </select>
         </div>
         <div class="col-3">
-          <button id="submit"onclick="enrich()" class="btn btn-dark"> Enrich Presence</button>
+          <button id="submit"onclick="enrich()" class="btn btn-dark">Enrich Presence</button>
         </div>
       </div>
       <div class="row">
