@@ -1,16 +1,7 @@
 const $ = require('jquery') // jquery becuase im too lazy to learn rn
 const ipcRenderer = require('electron').ipcRenderer // Used to communicate between renderer and main
 var active = false
-var args = {
-  details: 'Using rpcengine',
-  state: 'by theqoobee',
-  startTimestamp: true, // Timestamp to track the passage of time
-  largeImageKey: 'megu1', // name of the pics
-  smallImageKey: 'naruto_sleep', // ^^^
-  largeImageText: "I'm big image", // the text displayed when hovering over them
-  smallImageText: "I'm small image",
-  instance: false
-}
+var changed = false
 
 /* TODO LIST:
  * Make it work as it is with regular vars
@@ -18,7 +9,12 @@ var args = {
  * Sync the html code to work with this
  */
 
+setInterval(() => {
+  update()
+}, 5e3)
+
 async function update () {
+  console.log('barambam')
   args = {
     details: $('#text1').val(),
     state: $('#text2').val(),
@@ -32,15 +28,20 @@ async function update () {
 
   if (active) {
     if (args.details.length > 2 && args.state.length > 2) {
-        	ipcRenderer.send('update', args)
+      ipcRenderer.send('update', args)
+      if (changed) {
+        change()
+        changed = false
+      }
     } else {
       log('Please enter at least 2 characters for the first two fields', 'error')
+      active = false
     }
   }
 }
 
 ipcRenderer.on('username', (event, args) => {
-  log(`Successfuly connected for <strong> ${args} </strong>`)
+  log(`Successfuly connected for <strong> ${args} </strong>`, 'big')
 })
 
 function toggleActive () {
@@ -49,13 +50,20 @@ function toggleActive () {
 
 function enrich () {
   toggleActive()
+
   update()
   if (active) {
-  	$('#submit').replaceWith('<button id="submit"onclick="enrich()" class="btn btn-dark">Presence: ON</button>')
+    $('#submit').replaceWith('<button id="submit"onclick="enrich()" class="btn btn-dark">Presence: ON</button>')
   } else {
     $('#submit').replaceWith('<button id="submit"onclick="enrich()" class="btn btn-dark">Presence: OFF</button>')
   }
 }
+
+// I'll use this later
+
+// function removeHelp () {
+//   $('#helperText').toggleClass('hidden')
+// }
 
 // The following are functions used to visually represent what's going on for the user
 // change() changes everything to red, for errors
@@ -70,9 +78,13 @@ function change () {
 
 // Log uses the "command prompt" in the UI to tell users what's going on
 function log (text, type) {
-  $('#textOutput').replaceWith(`<p class="text-monospace text-white" id="textOutput">${text};</p>`)
-  if (type === 'error' && !changed) {
+  if (type === 'error' && !changed) { // Paramater error makes everything turn red
+    $('#textOutput').replaceWith(`<p class="text-monospace text-white small" id="textOutput">${text};</p>`)
     change()
     changed = true
-  }; // Paramater error makes everything turn red
+  } else if (type === 'big') {
+    $('#textOutput').replaceWith(`<p class="text-monospace text-white" id="textOutput">${text};</p>`)
+  } else {
+    $('#textOutput').replaceWith(`<p class="text-monospace text-white small" id="textOutput">${text};</p>`)
+  }
 }
