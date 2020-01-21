@@ -32,7 +32,7 @@ const createWindow = () => {
 
   mainWindow.openDevTools()
 
-  // mainWindow.removeMenu() // I don't need the menu there, it's ew.
+  mainWindow.removeMenu() // I don't need the menu there, it's ew.
 
   // Load the correct file
   mainWindow.loadFile(path.join(__dirname, 'index.html'))
@@ -77,17 +77,7 @@ app.on('activate', () => {
 
 var changed = true // A variable to keep track of cahnged
 var username
-// These are the initial arguments
-var mainArgs = {
-  details: 'Usingadsasd rpcengine',
-  state: 'by theqoobee',
-  startTimestamp: true, // Timestamp to track the passage of time
-  largeImageKey: 'megu1', // name of the pics
-  smallImageKey: 'naruto_sleep', // ^^^
-  largeImageText: "I'm big image", // the text displayed when hovering over them
-  smallImageText: "I'm small image",
-  instance: false // base argument
-}
+var mainArgs
 
 // This function reacts to a message from the renderer process, specifically looking at if anything changed
 // If anything changed, it give it to the rpc function wheen it checks
