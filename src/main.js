@@ -32,7 +32,7 @@ const createWindow = () => {
 
   mainWindow.openDevTools()
 
-  mainWindow.removeMenu() // I don't need the menu there
+  // mainWindow.removeMenu() // I don't need the menu there, it's ew.
 
   // Load the correct file
   mainWindow.loadFile(path.join(__dirname, 'index.html'))
@@ -56,7 +56,7 @@ app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
     // app.quit(); // quit the app
     createWindow()
-    rpc.destroy()
+    // rpc.destroy()
   }
 })
 
@@ -76,7 +76,7 @@ app.on('activate', () => {
 // // when the user decides to change something in the rpcengine app, renderer beams the new info over to main.js
 
 var changed = true // A variable to keep track of cahnged
-
+var username
 // These are the initial arguments
 var mainArgs = {
   details: 'Usingadsasd rpcengine',
@@ -91,13 +91,15 @@ var mainArgs = {
 
 // This function reacts to a message from the renderer process, specifically looking at if anything changed
 // If anything changed, it give it to the rpc function wheen it checks
-ipcMain.on('change', (event, args) => {
+ipcMain.on('update', (event, args) => {
   if (!isEqual(mainArgs, args)) {
     changed = true
   }
+  event.sender.send('username', username)
 })
 
 ipcMain.on('check', (event, args) => {
+  username = args // we passed the username from the rpc.js function
   if (changed) {
     event.returnValue = mainArgs
     changed = false

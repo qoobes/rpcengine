@@ -40,7 +40,7 @@ async function update () {
 }
 
 ipcRenderer.on('username', (event, args) => {
-
+  log(`Successfuly connected for <strong> ${args} </strong>`)
 })
 
 function toggleActive () {
