@@ -1,66 +1,78 @@
-console.log("Initialized app");
-const $ = require('jquery');
-const ipcRenderer = require('electron').ipcRenderer;
-var text1, text2, imagelg, imagesm, timer;
-let changed = false;
-let status;
-var mode = 'Code';
-function enrich() {
-	if ($("#text1").val().length < 2 || $("#text2").val().length < 2) { 
-		log("Please enter at least 2 characters", "error");
-		return; }
-	 
-	text1 = $("#text1").val();
-	text2 = $("#text2").val();
-	imagelg = $("#imagelg").val() == 'No Large Image' ? undefined : $("#imagelg").val().toLowerCase();
-	imagesm = $("#imagesm").val() == 'No Small Image' ? undefined : $("#imagesm").val().toLowerCase();
-	timer = $("#timer").val() == 'Yes Timer' ? true : false; 
-
-	status = ipcRenderer.sendSync('simple', { text1, text2, imagelg, imagesm, timer });
-	if (status.success === true) {
-		if (changed) {
-			changed = false;
-			change();
-		}
-			log(`Successfuly connected for <strong>${status.user}</strong>`)
-		
-	} else {
-		document.write(
-		`<h1>A serious error has occured</h1>`,
-		`<br> <h3>please report this on the following link </h3>`,
-		`<br> <a style="font-size: 40px" href="https://github.com/theqoobee/rpcengine/issues">Github.</a>`,
-		`<br> <h3>Please forward this error too <br> </h3>`,
-		`<br> <h4 style = 'color: red'> ${status}</h4>`
-		);
-	}
+const $ = require('jquery') // jquery becuase im too lazy to learn rn
+const ipcRenderer = require('electron').ipcRenderer // Used to communicate between renderer and main
+var active = false
+var args = {
+  details: 'Using rpcengine',
+  state: 'by theqoobee',
+  startTimestamp: true, // Timestamp to track the passage of time
+  largeImageKey: 'megu1', // name of the pics
+  smallImageKey: 'naruto_sleep', // ^^^
+  largeImageText: "I'm big image", // the text displayed when hovering over them
+  smallImageText: "I'm small image",
+  instance: false
 }
 
-$(document).ready( () => {
-   window.addEventListener("keyup", (event) => {
-  if (event.keyCode === 13) {
-    event.preventDefault();
-    $("#submit").click();
+/* TODO LIST:
+ * Make it work as it is with regular vars
+ * Dynamically add the selections
+ * Sync the html code to work with this
+ */
+
+async function update () {
+  args = {
+    details: $('#text1').val(),
+    state: $('#text2').val(),
+    startTimestamp: $('#timer').val() == 'Yes Timer',
+    largeImageKey: $('#imagelg').val() == 'No Large Image' ? undefined : $('#imagelg').val().toLowerCase(),
+    smallImageKey: $('#imagesm').val() == 'No Large Image' ? undefined : $('#imagesm').val().toLowerCase(),
+    largeImageText: $('imagelgText').val(),
+    smallImageText: $('imagesmText').val(),
+    instance: false
   }
-});
-});
 
-function change() {
-		$("#output").toggleClass('bg-danger');
-		$("#ico").toggleClass('bg-danger');
-		$("input").toggleClass('bg-danger');
-		$("select").toggleClass('bg-danger');
-		$("input").toggleClass('white');
-	
+  if (active) {
+    if (args.details.length > 2 && args.state.length > 2) {
+        	ipcRenderer.send('update', args)
+    } else {
+      log('Please enter at least 2 characters for the first two fields', 'error')
+    }
+  }
 }
 
-function log(text, type) {
-	$("#textOutput").replaceWith(`<p class="text-monospace text-white" id="textOutput">${text};</p>`);
-	if (type === "error" && !changed) {change(); changed = true;};
+ipcRenderer.on('username', (event, args) => {
+
+})
+
+function toggleActive () {
+  return active = !active // toggles active
 }
 
+function enrich () {
+  toggleActive()
+  update()
+  if (active) {
+  	$('#submit').replaceWith('<button id="submit"onclick="enrich()" class="btn btn-dark">Presence: ON</button>')
+  } else {
+    $('#submit').replaceWith('<button id="submit"onclick="enrich()" class="btn btn-dark">Presence: OFF</button>')
+  }
+}
 
-ipcRenderer.on('name', (event, args) => {
-	console.log(args);
+// The following are functions used to visually represent what's going on for the user
+// change() changes everything to red, for errors
 
+function change () {
+  $('#output').toggleClass('bg-danger')
+  $('#ico').toggleClass('bg-danger')
+  $('input').toggleClass('bg-danger')
+  $('select').toggleClass('bg-danger')
+  $('input').toggleClass('white')
+}
 
-});
+// Log uses the "command prompt" in the UI to tell users what's going on
+function log (text, type) {
+  $('#textOutput').replaceWith(`<p class="text-monospace text-white" id="textOutput">${text};</p>`)
+  if (type === 'error' && !changed) {
+    change()
+    changed = true
+  }; // Paramater error makes everything turn red
+}
