@@ -1,181 +1,192 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="theqoobe">
-    <title>RPC | Engine</title>
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-    <script src="js/renderer.js"></script>
-    <script src="js/rpc.js"></script>
-    
-  </head>
-  <body >
-    <header class="masthead" style="padding: 1rem">
-      <div class="row mb-3">
-        <div class="col-3">
-          <h4 class="text-monospace text-white font-weight-bold" id="ico" style="background-color: rgba(100, 100, 100, 0.4); padding: 0.5rem; border-radius: 2px;">RPC | <br>Engine</h4>
-        </div>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="theqoobe">
+        <title>RPC | Engine</title>
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+        <link href="css/style.css" rel="stylesheet">
+        <script src="js/renderer.js"></script>
+        <script src="js/rpc.js"></script>
         
-      </div>
-
-      <div class="row mb-3">
-        <div class="col-6">
-          <input type="text" id="text1" placeholder="Top text line" class="form-control flex-fill white" >
-        </div>
-        <div class="col-6">
-          <input type="text" placeholder="Bottom text line" class="form-control flex-fill white" id="text2">
-          
-          
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-6">
-          <input type="text" id="imagelgText" placeholder="Large Image Text (optional)" class="form-control flex-fill white" >
-        </div>
-        <div class="col-6">
-          <input type="text" placeholder="Small Image Text (optional)" class="form-control flex-fill white" id="imagesmText">
-          
-          
-        </div>
-      </div>
-      <div class="row mt-3">
-        <div class="col-3">
-          <select id="imagelg" class="form-control">
-            <option>No Large Image</option>
-            <option>Android_Studio</option>
-            <option>Apple</option>
-            <option>ArchLinux</option>
-            <option>Atom</option>
-            <option>Cat</option>
-            <option>Chibi</option>
-            <option>Chrome</option>
-            <option>CSS</option>
-            <option>C++</option>
-            <option>Darkness</option>
-            <option>Deku</option>
-            <option>Discord</option>
-            <option>Electron</option>
-            <option>Elm</option>
-            <option>Facebook</option>
-            <option>Github</option>
-            <option>Gitlab</option>
-            <option>Google</option>
-            <option>Google_Music</option>
-            <option>HTML</option>
-            <option>Instagram</option>
-            <option>Intellij</option>
-            <option>Java</option>
-            <option>Javascript</option>
-            <option>Kubernetes</option>
-            <option>Linux</option>
-            <option>Megu</option>
-            <option>Megu1</option>
-            <option>Music</option>
-            <option>Naruto_sleep</option>
-            <option>Naruto_small</option>
-            <option>Node.js</option>
-            <option>Php</option>
-            <option>Poopy</option>
-            <option>Python</option>
-            <option>Rem</option>
-            <option>Ruby</option>
-            <option>Sasuke</option>
-            <option>Shell</option>
-            <option>Sublime</option>
-            <option>Swift</option>
-            <option>Tanjiro</option>
-            <option>Todoroki</option>
-            <option>Visual_studio</option>
-            <option>VSCode</option>
-            <option>Webstorm</option>
-            <option>Windows</option>
-            <option>XCode</option>
-            <option>Youtube</option>    
-          </select>
-        </div>
-        <div class="col-3">
-          <select id="imagesm" class="form-control">
-            <option>No Small Image</option>
-            <option>Android_Studio</option>
-            <option>Apple</option>
-            <option>ArchLinux</option>
-            <option>Atom</option>
-            <option>Cat</option>
-            <option>Chibi</option>
-            <option>Chrome</option>
-            <option>CSS</option>
-            <option>C++</option>
-            <option>Darkness</option>
-            <option>Deku</option>
-            <option>Discord</option>
-            <option>Electron</option>
-            <option>Elm</option>
-            <option>Facebook</option>
-            <option>Github</option>
-            <option>Gitlab</option>
-            <option>Google</option>
-            <option>Google_Music</option>
-            <option>HTML</option>
-            <option>Instagram</option>
-            <option>Intellij</option>
-            <option>Java</option>
-            <option>Javascript</option>
-            <option>Kubernetes</option>
-            <option>Linux</option>
-            <option>Megu</option>
-            <option>Megu1</option>
-            <option>Music</option>
-            <option>Naruto_sleep</option>
-            <option>Naruto_small</option>
-            <option>Node.js</option>
-            <option>Php</option>
-            <option>Poopy</option>
-            <option>Python</option>
-            <option>Rem</option>
-            <option>Ruby</option>
-            <option>Sasuke</option>
-            <option>Shell</option>
-            <option>Sublime</option>
-            <option>Swift</option>
-            <option>Tanjiro</option>
-            <option>Todoroki</option>
-            <option>Visual_studio</option>
-            <option>VSCode</option>
-            <option>Webstorm</option>
-            <option>Windows</option>
-            <option>XCode</option>
-            <option>Youtube</option>            
-
-          </select>
-        </div>
-        <div class="col-3">
-          <select id="timer" class="form-control">
-            <option>No Timer</option>
-            <option>Yes Timer</option>
-          </select>
-        </div>
-        <div class="col-3">
-          <button id="submit"onclick="enrich()" class="btn btn-dark">Enrich Presence</button>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-9 ml-" >
-          <div id="output">
-            <p class="text-monospace text-white small" id="textOutput">Enter the values and press the button to start;</p>
-          </div>
-        </div>
-      </div>
-      
-    </header>
-    <footer class="bg-black small text-center text-white-50">
-      <div class="container">
-        Copyright &copy; RPC|Engine 2020
-      </div>
-    </footer>
-  </body>
+    </head>
+    <body >
+        <header class="masthead" style="padding: 1rem">
+            <div class="row mb-3">
+                <div class="col-3">
+                    <h4 class="text-monospace text-white font-weight-bold" id="ico" style="background-color: rgba(100, 100, 100, 0.4); padding: 0.5rem; border-radius: 2px;">RPC | <br>Engine</h4>
+                </div>
+                
+                <div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Dropdown button
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item" href="#">Action</a>
+    <a class="dropdown-item" href="#">Another action</a>
+    <a class="dropdown-item" href="#">Something else here</a>
+  </div>
+</div>
+                
+            </div>
+            <div class="row mb-3">
+                <div class="col-6">
+                    <input type="text" id="text1" placeholder="Top text line" class="form-control flex-fill white" >
+                </div>
+                <div class="col-6">
+                    <input type="text" placeholder="Bottom text line" class="form-control flex-fill white" id="text2">
+                    
+                    
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <input type="text" id="imagelgText" placeholder="Large Image Text (optional)" class="form-control flex-fill white" >
+                </div>
+                <div class="col-6">
+                    <input type="text" placeholder="Small Image Text (optional)" class="form-control flex-fill white" id="imagesmText">
+                    
+                    
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-3">
+                    <select id="imagelg" class="form-control">
+                        <option>No Large Image</option>
+                        <option>Android_Studio</option>
+                        <option>Apple</option>
+                        <option>ArchLinux</option>
+                        <option>Atom</option>
+                        <option>Cat</option>
+                        <option>Chibi</option>
+                        <option>Chrome</option>
+                        <option>CSS</option>
+                        <option>C++</option>
+                        <option>Darkness</option>
+                        <option>Deku</option>
+                        <option>Discord</option>
+                        <option>Electron</option>
+                        <option>Elm</option>
+                        <option>Facebook</option>
+                        <option>Github</option>
+                        <option>Gitlab</option>
+                        <option>Google</option>
+                        <option>Google_Music</option>
+                        <option>HTML</option>
+                        <option>Instagram</option>
+                        <option>Intellij</option>
+                        <option>Java</option>
+                        <option>Javascript</option>
+                        <option>Kubernetes</option>
+                        <option>Linux</option>
+                        <option>Megu</option>
+                        <option>Megu1</option>
+                        <option>Music</option>
+                        <option>Naruto_sleep</option>
+                        <option>Naruto_small</option>
+                        <option>Node.js</option>
+                        <option>Php</option>
+                        <option>Poopy</option>
+                        <option>Python</option>
+                        <option>Rem</option>
+                        <option>Ruby</option>
+                        <option>Sasuke</option>
+                        <option>Shell</option>
+                        <option>Sublime</option>
+                        <option>Swift</option>
+                        <option>Tanjiro</option>
+                        <option>Todoroki</option>
+                        <option>Visual_studio</option>
+                        <option>VSCode</option>
+                        <option>Webstorm</option>
+                        <option>Windows</option>
+                        <option>XCode</option>
+                        <option>Youtube</option>
+                    </select>
+                </div>
+                <div class="col-3">
+                    <select id="imagesm" class="form-control">
+                        <option>No Small Image</option>
+                        <option>Android_Studio</option>
+                        <option>Apple</option>
+                        <option>ArchLinux</option>
+                        <option>Atom</option>
+                        <option>Cat</option>
+                        <option>Chibi</option>
+                        <option>Chrome</option>
+                        <option>CSS</option>
+                        <option>C++</option>
+                        <option>Darkness</option>
+                        <option>Deku</option>
+                        <option>Discord</option>
+                        <option>Electron</option>
+                        <option>Elm</option>
+                        <option>Facebook</option>
+                        <option>Github</option>
+                        <option>Gitlab</option>
+                        <option>Google</option>
+                        <option>Google_Music</option>
+                        <option>HTML</option>
+                        <option>Instagram</option>
+                        <option>Intellij</option>
+                        <option>Java</option>
+                        <option>Javascript</option>
+                        <option>Kubernetes</option>
+                        <option>Linux</option>
+                        <option>Megu</option>
+                        <option>Megu1</option>
+                        <option>Music</option>
+                        <option>Naruto_sleep</option>
+                        <option>Naruto_small</option>
+                        <option>Node.js</option>
+                        <option>Php</option>
+                        <option>Poopy</option>
+                        <option>Python</option>
+                        <option>Rem</option>
+                        <option>Ruby</option>
+                        <option>Sasuke</option>
+                        <option>Shell</option>
+                        <option>Sublime</option>
+                        <option>Swift</option>
+                        <option>Tanjiro</option>
+                        <option>Todoroki</option>
+                        <option>Visual_studio</option>
+                        <option>VSCode</option>
+                        <option>Webstorm</option>
+                        <option>Windows</option>
+                        <option>XCode</option>
+                        <option>Youtube</option>
+                    </select>
+                </div>
+                <div class="col-3">
+                    <select id="timer" class="form-control">
+                        <option>No Timer</option>
+                        <option>Yes Timer</option>
+                    </select>
+                </div>
+                <div class="col-3">
+                    <button id="submit"onclick="enrich()" class="btn btn-dark">Start Presence</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-9" >
+                    <div id="output">
+                        <p class="text-monospace text-white small" id="textOutput">Enter the values and press the button to start;</p>
+                        <br>
+                        <p class="text-monospace text-white small" id="textOutput">*Presence updates every 10 seconds</p>
+                    </div>
+                </div>
+            </div>
+            
+        </header>
+        <footer class="bg-black small text-center text-white-50">
+            <div class="container">
+                Copyright &copy; RPC|Engine 2020
+            </div>
+        </footer>
+    </body>
 </html>
