@@ -4,9 +4,11 @@ const DiscordRPC = require('discord-rpc') // importing the discord library
 const clientId = '665244956805300274' // The clientId of the discord app
 const ipcRPC = require('electron').ipcRenderer // This is how we send messages between this and main.js
 const timestamp = new Date() // This is what we use for the timestamp
+var username
 // Default vars
 
-var tempArgs; var args = {
+var tempArgs
+var args = {
   details: 'Using rpcengine',
   state: 'by theqoobee',
   startTimestamp: true, // Timestamp to track the passage of time
@@ -18,14 +20,13 @@ var tempArgs; var args = {
 }
 
 var rpc = new DiscordRPC.Client({ transport: 'ipc' }) // setting up the richpresence object
-
 // The purpose of the following function is to check whether or not there are any updates to the arguments
 //
 // It sends a synchornous message to main via ipcRenderer, and as a result gets either false, meaning there
 // were no changes, or a changed version of the arguments
 
 async function check () {
-  const back = ipcRPC.sendSync('check', 'Any news BROTHA?') // this is the sync function
+  const back = ipcRPC.sendSync('check', username) // passing the username as an argument
   if (back) { // If back is true, in other words if it isn't false, null, or undefined
     args = back // change the value of args to the value given by the main process
   }
@@ -51,6 +52,8 @@ async function setActivity () {
 // finally, execute the setActivity() function only when rpc is ready
 
 rpc.on('ready', () => {
+  username = rpc.user.username + '#' + rpc.user.discriminator
+
   setActivity()
 
   setInterval(() => { // set an interval of 10 seconds
