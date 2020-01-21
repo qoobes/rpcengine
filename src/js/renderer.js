@@ -14,19 +14,21 @@ setInterval(() => {
 }, 5e3)
 
 async function update () {
-  args = {
-    details: $('#text1').val(),
-    state: $('#text2').val(),
-    startTimestamp: $('#timer').val() == 'Yes Timer',
-    largeImageKey: $('#imagelg').val() == 'No Large Image' ? undefined : $('#imagelg').val().toLowerCase(),
-    smallImageKey: $('#imagesm').val() == 'No Large Image' ? undefined : $('#imagesm').val().toLowerCase(),
-    largeImageText: $('imagelgText').val(),
-    smallImageText: $('imagesmText').val(),
-    instance: false
-  }
-
   if (active) {
+    args = {
+      details: $('#text1').val(),
+      state: $('#text2').val(),
+      startTimestamp: $('#timer').val() == 'Yes Timer',
+      largeImageKey: $('#imagelg').val() == 'No Large Image' ? undefined : $('#imagelg').val().toLowerCase(),
+      smallImageKey: $('#imagesm').val() == 'No Large Image' ? undefined : $('#imagesm').val().toLowerCase(),
+      largeImageText: $('imagelgText').val(),
+      smallImageText: $('imagesmText').val(),
+      instance: false
+    }
+
     if (args.details.length > 2 && args.state.length > 2) {
+      console.log('I get RAN FOR NO REASON!')
+
       ipcRenderer.send('update', args)
       if (changed) {
         change()
@@ -41,6 +43,16 @@ async function update () {
 
 ipcRenderer.on('username', (event, args) => {
   log(`Successfuly connected for <strong> ${args} </strong>`, 'big')
+})
+
+$(document).ready(() => { // When the document is fully loaded
+  // The function below changes what happens when the enter key is pressed on all elements
+  window.addEventListener('keyup', (event) => {
+    if (event.keyCode === 13) {
+      event.preventDefault()
+      $('#submit').click()
+    }
+  })
 })
 
 function toggleActive () {
