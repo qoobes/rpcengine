@@ -14,7 +14,6 @@ setInterval(() => {
 }, 5e3)
 
 async function update () {
-  console.log('barambam')
   args = {
     details: $('#text1').val(),
     state: $('#text2').val(),
