@@ -2,7 +2,17 @@ const $ = require('jquery') // jquery becuase im too lazy to learn rn
 const ipcRenderer = require('electron').ipcRenderer // Used to communicate between renderer and main
 var active = false
 var changed = false
-
+var defArgs = {
+  details: 'Using rpcengine',
+  state: 'by theqoobee',
+  startTimestamp: true, // Timestamp to track the passage of time
+  largeImageKey: 'megu1', // name of the pics
+  smallImageKey: 'naruto_sleep', // ^^^
+  largeImageText: "I'm big image", // the text displayed when hovering over them
+  smallImageText: "I'm small image",
+  instance: false
+}
+var args = defArgs
 /* TODO LIST:
  * Make it work as it is with regular vars
  * Dynamically add the selections
@@ -27,14 +37,13 @@ async function update () {
     }
 
     if (args.details.length > 2 && args.state.length > 2) {
-      console.log('I get RAN FOR NO REASON!')
-
       ipcRenderer.send('update', args)
       if (changed) {
         change()
         changed = false
       }
     } else {
+    	args = defArgs
       log('Please enter at least 2 characters for the first two fields', 'error')
       active = false
     }
