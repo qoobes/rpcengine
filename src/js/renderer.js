@@ -108,3 +108,11 @@ function log (text, type) {
     $('#textOutput').replaceWith(`<p class="text-monospace text-white small" id="textOutput">${text};</p>`)
   }
 }
+
+function settingWindow () {
+  ipcRenderer.send('settings')
+}
+
+function menu () {
+  ipcRenderer.send('menu')
+}
