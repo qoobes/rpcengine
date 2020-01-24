@@ -1,0 +1,59 @@
+/* 
+	**Colors taken from discord, https://discordapp.com/branding**
+	
+	Not quite black: #23272A;
+	Dark, but not black: #2C2F33;
+	like, very dark: #0e1011;
+	Blurple: #7289DA;
+	Greyple: #99AAB5;
+	Nice darky color: #36393f;
+ */
+
+body {
+	background-color: #2C2F33;
+}
+
+.input {
+	width:  100%;
+	margin: 0.5rem;
+	padding:  0.5rem;
+	padding-top:  0.7rem;
+	padding-bottom:  0.7rem;
+	background-color: rgba(89,94,102,0.32);
+	/* border: 0.1rem solid rgba(0,0,0,0.3); */
+	border:  none;
+	border-radius: 5px;
+	outline:  none;
+	box-shadow: 0px 2px 5px 0px #000;
+	transition: box-shadow 200ms, transform 200ms, border 200ms;
+}
+
+.input:focus {
+	transform: translateY(0.07rem);
+	box-shadow: none;
+}
+
+::placeholder {
+	color: #888888;
+}
+
+option {
+	color: #fff !important;
+	background-color: rgba(0,0,0,0) !important;
+}
+
+.button {
+	background-color: #7289DA;
+	color: white;
+	width: 100%;
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
+	box-shadow: 0px 2px 10px 1px #000;
+	transition: transform 200ms, box-shadow 200ms;
+}
+
+.button:hover {
+	color: white;
+	transform: translateY(0.2rem);
+	box-shadow: 0px 3px 14px 2px #000;
+}
