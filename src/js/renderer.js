@@ -43,7 +43,7 @@ async function update () {
         changed = false
       }
     } else {
-    	args = defArgs
+      args = defArgs
       log('Please enter at least 2 characters for the first two fields', 'error')
       active = false
     }
@@ -109,10 +109,11 @@ function log (text, type) {
   }
 }
 
+// Sends a message to open the settings window
 function settingWindow () {
   ipcRenderer.send('settings')
 }
-
+// Toggles the topbar menu cause it's annoying
 function menu () {
   ipcRenderer.send('menu')
 }
