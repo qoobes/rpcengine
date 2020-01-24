@@ -16,8 +16,9 @@ if (require('electron-squirrel-startup')) {
   app.quit()
 }
 
-// Define the window
+var menu = false
 
+// Define the window
 let mainWindow
 
 const createWindow = () => {
@@ -32,7 +33,13 @@ const createWindow = () => {
 
   mainWindow.openDevTools()
 
-  mainWindow.removeMenu() // I don't need the menu there, it's ew.
+  // this is temporary
+
+  if (!menu) {
+    mainWindow.removeMenu()
+  }
+
+  // mainWindow.removeMenu() // I don't need the menu there, it's ew.
 
   // Load the correct file
   mainWindow.loadFile(path.join(__dirname, 'index.html'))
@@ -66,6 +73,39 @@ app.on('activate', () => {
     createWindow()
   }
 })
+
+// This is for integrating the special settings
+
+let settingWindow
+
+ipcMain.on('settings', (event) => {
+  createSettingWindow()
+})
+function createSettingWindow () {
+  settingWindow = new BrowserWindow({ // Setting the dimnesions
+    width: 600,
+    height: 300,
+    vibrancy: 'dark', // mac only
+    webPreferences: {
+      nodeIntegration: true // Make sure node is there
+    }
+  })
+
+  settingWindow.openDevTools()
+
+  // settingWindow.removeMenu() // I don't need the menu there, it's ew.
+  if (!menu) {
+    settingWindow.removeMenu()
+  }// this is again temporary
+
+  // Load the correct file
+  settingWindow.loadFile(path.join(__dirname, 'settings.html'))
+
+  // Make sure the window is gone whne closed
+  settingWindow.on('closed', () => {
+    settingWindow = null
+  })
+}
 // ------------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------------
 // The above code was setup, now that that's done let's get down to the juicy parts
@@ -95,3 +135,13 @@ ipcMain.on('check', (event, args) => {
     changed = false
   } else { event.returnValue = false }
 })
+
+ipcMain.on('menu', (event) => {
+  menu = !menu
+  mainWindow.close()
+  if (settingWindow) {
+    settingWindow.close()
+    createSettingWindow()
+  }
+  // createWindow()
+}) // THIS PART REALLY NEEDS REMOVAL LATER ^^^^^
