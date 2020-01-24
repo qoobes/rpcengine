@@ -44,6 +44,7 @@ let mainWindow
 
 const createWindow = () => {
   mainWindow = new BrowserWindow({ // Setting the dimnesions
+    icon: 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn2.iconfinder.com%2Fdata%2Ficons%2Fios-7-icons%2F50%2Fengine-512.png&f=1&nofb=1',
     width: 800,
     height: 450,
     vibrancy: 'dark', // mac only
@@ -59,9 +60,6 @@ const createWindow = () => {
   if (!menu) {
     mainWindow.removeMenu()
   }
-
-  // mainWindow.removeMenu() // I don't need the menu there, it's ew.
-
   // Load the correct file
   mainWindow.loadFile(path.join(__dirname, 'index.html'))
 
@@ -104,6 +102,7 @@ ipcMain.on('settings', (event) => {
 })
 function createSettingWindow () {
   settingWindow = new BrowserWindow({ // Setting the dimnesions
+    parent: mainWindow,
     width: 600,
     height: 300,
     vibrancy: 'dark', // mac only
