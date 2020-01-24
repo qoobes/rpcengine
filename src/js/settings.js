@@ -21,11 +21,8 @@
 // SOFTWARE.
 
 // This file regulates the settings window
-function validate () {
-  const clientInput = $('#ClientId')
-  if (clientInput.checkValidity()) {
-    console.log('yeet works')
-  } else {
-    console.log('yeet noworks')
-  }
+
+// Function for opening the wiki in another browser window
+function wiki () {
+  require('electron').shell.openExternal('https://github.com/theqoobee/rpcengine/wiki')
 }
