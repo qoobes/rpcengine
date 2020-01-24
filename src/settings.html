@@ -1,18 +1,14 @@
-<!-- 
+<!--
 MIT License
-
 Copyright (c) 2020 theqoobee, qoobes
-
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
 in the Software without restriction, including without limitation the rights
 to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 copies of the Software, and to permit persons to whom the Software is
 furnished to do so, subject to the following conditions:
-
 The above copyright notice and this permission notice shall be included in all
 copies or substantial portions of the Software.
-
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -21,11 +17,13 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 -->
-
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>The nigga</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<title>RPC | Settings</title>
+		<meta name="description" content="">
+        <meta name="author" content="theqoobe">
 		<link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 		<link href="css/bootstrap.min.css" rel="stylesheet">
@@ -36,7 +34,7 @@ SOFTWARE.
 	</head>
 	<body>
 		<div class="container-max">
-			<div class="row">
+			<div class="row mt-1">
 				<div class="col-12 ml-0 mb-0">
 					<form>
 						<input pattern=".{18,18}" maxlength="19" type="text" class="input" id="ClientId" name="Client Id" placeholder="Custom Client Id">
@@ -53,10 +51,12 @@ SOFTWARE.
 			</div>
 			<div class="row">
 				<div class="col-3">
-					<button class="btn button" onclick="validate()">Save</button>
+					<button class="btn button" onclick="kel()">Save</button>
 				</div>
-				<div class="col-9 popover-right">
-					<p style="font-size: 12px"> Need help setting custom presence? </p>
+			</div>
+			<div class="row">
+				<div class="col-12 popover-right text-center">
+					<a id="helpText" onclick="wiki()"> Need help setting custom presence? </a>
 				</div>
 			</div>
 		</div>
