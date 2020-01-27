@@ -34,6 +34,6 @@ function kel () {
   if (customClientId.length !== 18) {
     alert('Invalid Client ID!')
   } else {
-    ipcRenderer.send('advanced', clientId)
+    ipcRenderer.send('advanced', customClientId)
   }
 }
