@@ -37,8 +37,17 @@ async function kel () {
     ipcRenderer.send('advanced', customClientId)
     $('#multiSelect').replaceWith('<p class="text-success small ml-3" >Sucessfully set new client id! Wait 10-15 seconds for changes to apply.</p>')
     $('#clientButton').replaceWith('<button class="btn button success" id="clientButton" onclick="exit()">Exit</button>')
+    $('#defaultButton').remove()
     $('#helpText').toggleClass('success')
   }
+}
+
+function def () { // resets the clientid to default
+  ipcRenderer.send('advanced', '665244956805300274')
+  $('#multiSelect').replaceWith('<p class="text-success small ml-3" >Sucessfully set new client id! Wait 10-15 seconds for changes to apply.</p>')
+  $('#clientButton').replaceWith('<button class="btn button success" id="clientButton" onclick="exit()">Exit</button>')
+  $('#helpText').toggleClass('success')
+  $('#defaultButton').remove()
 }
 
 function exit () {
