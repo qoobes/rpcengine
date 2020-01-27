@@ -22,7 +22,18 @@
 
 // This file regulates the settings window
 
+var customClientId
 // Function for opening the wiki in another browser window
 function wiki () {
   require('electron').shell.openExternal('https://github.com/theqoobee/rpcengine/wiki')
+}
+
+// save the client id and shoot it to main
+function kel () {
+  customClientId = $('#ClientId').val()
+  if (customClientId.length !== 18) {
+    alert('Invalid Client ID!')
+  } else {
+    ipcRenderer.send('advanced', clientId)
+  }
 }

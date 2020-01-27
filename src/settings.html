@@ -33,11 +33,11 @@ SOFTWARE.
 		<script src="js/renderer.js"></script>
 	</head>
 	<body>
-		<div class="container-max">
+		<div class="container-max ml-2">
 			<div class="row mt-1">
 				<div class="col-12 ml-0 mb-0">
 					<form>
-						<input pattern=".{18,18}" maxlength="19" type="text" class="input" id="ClientId" name="Client Id" placeholder="Custom Client Id">
+						<input pattern=".{18,18}" maxlength="18" type="text" class="input" id="ClientId" name="Client Id" placeholder="Custom Client Id">
 					</form>
 				</div>
 			</div>
@@ -51,7 +51,7 @@ SOFTWARE.
 			</div>
 			<div class="row">
 				<div class="col-3">
-					<button class="btn button" onclick="kel()">Save</button>
+					<button class="btn button" id="clientButton" onclick="kel()">Save</button>
 				</div>
 			</div>
 			<div class="row">

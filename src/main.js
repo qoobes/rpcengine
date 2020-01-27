@@ -135,7 +135,8 @@ function createSettingWindow () {
 // if it has rpc.js updates the rich presence, and if not, nothing changes
 // // when the user decides to change something in the rpcengine app, renderer beams the new info over to main.js
 
-var changed = true // A variable to keep track of cahnged
+var changed = { args: false, clientId: false } // A variable to keep track of cahnged
+
 var username
 var mainArgs
 
@@ -143,19 +144,26 @@ var mainArgs
 // If anything changed, it give it to the rpc function wheen it checks
 ipcMain.on('update', (event, args) => {
   if (!isEqual(mainArgs, args)) {
-    changed = true
+    changed.args = true
   }
   event.sender.send('username', username)
 })
 
+// Reacts to rpc checking if there's anything new
 ipcMain.on('check', (event, args) => {
   username = args // we passed the username from the rpc.js function
-  if (changed) {
+  if (changed.args) {
     event.returnValue = mainArgs
-    changed = false
+    changed.args = false
   } else { event.returnValue = false }
 })
 
+ipcMain.on('advanced', (event, args) => {
+  changed.clientId = true
+})
+
+// To be removed for production
+// This just toggles the menu so i don't have to restart the app every time i want to see what it looks like without it
 ipcMain.on('menu', (event) => {
   menu = !menu
   mainWindow.close()
