@@ -21,6 +21,8 @@
 // SOFTWARE.
 
 // This file regulates the settings window
+const $ = require('jquery') // jquery becuase im too lazy to learn rn
+const ipcRenderer = require('electron').ipcRenderer // Used to communicate between renderer and main
 var url, customClientId, returns
 // Function for opening the wiki in another browser window
 function wiki () {
