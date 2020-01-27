@@ -91,6 +91,7 @@ function clientUpdate () {
   rpc.destroy() // *properly* close the rpc
   rpc = new DiscordRPC.Client({ transport: 'ipc' }) // create a new one
   rpc.login({ clientId }).catch(console.error) // register with the new client id
+  loadImages()
 }
 
 // Login to finalize everything
