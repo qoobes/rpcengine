@@ -135,16 +135,18 @@ function createSettingWindow () {
 // if it has rpc.js updates the rich presence, and if not, nothing changes
 // // when the user decides to change something in the rpcengine app, renderer beams the new info over to main.js
 
-var changed = { args: false, clientId: false } // A variable to keep track of cahnged
-
+var changed = { args: false, clientId: false } // Two variables to keep track of changed
+var customClientId
 var username
 var mainArgs
+var argsReturnValue, clientReturnValue
 
 // This function reacts to a message from the renderer process, specifically looking at if anything changed
 // If anything changed, it give it to the rpc function wheen it checks
 ipcMain.on('update', (event, args) => {
-  if (!isEqual(mainArgs, args)) {
+  if (isEqual(mainArgs, args) === false) {
     changed.args = true
+    mainArgs = args
   }
   event.sender.send('username', username)
 })
@@ -152,14 +154,24 @@ ipcMain.on('update', (event, args) => {
 // Reacts to rpc checking if there's anything new
 ipcMain.on('check', (event, args) => {
   username = args // we passed the username from the rpc.js function
-  if (changed.args) {
-    event.returnValue = mainArgs
+  // check for new general args
+  if (changed.args !== false) {
+    argsReturnValue = mainArgs
     changed.args = false
-  } else { event.returnValue = false }
+  } else { argsReturnValue = false }
+
+  // check for new clientid
+  if (changed.clientId === true) {
+    clientReturnValue = customClientId
+    changed.clientId = false
+  } else { clientReturnValue = false }
+
+  event.returnValue = { args: argsReturnValue, clientId: clientReturnValue }
 })
 
 ipcMain.on('advanced', (event, args) => {
   changed.clientId = true
+  customClientId = args
 })
 
 // To be removed for production
