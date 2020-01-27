@@ -97,3 +97,11 @@ option {
 	transform: translateY(0.1rem);
 	box-shadow: none;
 }
+
+.button.success {
+	background-color: #42b55d;
+}
+
+#helpText.success {
+	color: #42b55d;
+}
