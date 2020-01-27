@@ -174,6 +174,13 @@ ipcMain.on('advanced', (event, args) => {
   customClientId = args
 })
 
+ipcMain.on('exitSettings', (event) => {
+  console.log('i actually run')
+  if (settingWindow !== null) {
+    settingWindow.close()
+  }
+})
+
 // To be removed for production
 // This just toggles the menu so i don't have to restart the app every time i want to see what it looks like without it
 ipcMain.on('menu', (event) => {
