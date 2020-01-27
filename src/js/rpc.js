@@ -22,7 +22,7 @@
 
 const DiscordRPC = require('discord-rpc') // importing the discord library
 
-const clientId = '665244956805300274' // The clientId of the discord app
+var clientId = '665244956805300274' // The clientId of the discord app
 const ipcRPC = require('electron').ipcRenderer // This is how we send messages between this and main.js
 const timestamp = new Date() // This is what we use for the timestamp
 var username
@@ -47,9 +47,13 @@ var rpc = new DiscordRPC.Client({ transport: 'ipc' }) // setting up the richpres
 // were no changes, or a changed version of the arguments
 
 async function check () {
-  const back = ipcRPC.sendSync('check', username) // passing the username as an argument
-  if (back) { // If back is true, in other words if it isn't false, null, or undefined
-    args = back // change the value of args to the value given by the main process
+  var update = ipcRPC.sendSync('check', username) // passing the username as an argument
+  if (update.args) { // If back is true, in other words if it isn't false, null, or undefined
+    args = update.args // change the value of args to the value given by the main process
+  }
+  if (update.clientId) {
+    clientId = update.clientId
+    clientUpdate()
   }
 }
 
@@ -82,6 +86,12 @@ rpc.on('ready', () => {
     setActivity() // set the activity
   }, 10e3) // wait 10 seconds before repeating the same thing
 })
+
+function clientUpdate () {
+  rpc.destroy() // *properly* close the rpc
+  rpc = new DiscordRPC.Client({ transport: 'ipc' }) // create a new one
+  rpc.login({ clientId }).catch(console.error) // register with the new client id
+}
 
 // Login to finalize everything
 rpc.login({ clientId }).catch(console.error) // again resolve failed promise
