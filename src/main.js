@@ -53,7 +53,7 @@ const createWindow = () => {
     }
   })
 
-  mainWindow.openDevTools()
+  // mainWindow.openDevTools()
 
   // this is temporary
 
@@ -111,7 +111,7 @@ function createSettingWindow () {
     }
   })
 
-  settingWindow.openDevTools()
+  // settingWindow.openDevTools()
 
   // settingWindow.removeMenu() // I don't need the menu there, it's ew.
   if (!menu) {
