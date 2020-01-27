@@ -175,7 +175,6 @@ ipcMain.on('advanced', (event, args) => {
 })
 
 ipcMain.on('exitSettings', (event) => {
-  console.log('i actually run')
   if (settingWindow !== null) {
     settingWindow.close()
   }
