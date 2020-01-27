@@ -84,6 +84,8 @@ $(document).ready(() => { // When the document is fully loaded
       $('#submit').click()
     }
   })
+
+  loadImages() // load the image options as soon as the document is ready
 })
 
 function toggleActive () {
@@ -138,4 +140,27 @@ function settingWindow () {
 // Toggles the topbar menu cause it's annoying
 function menu () {
   ipcRenderer.send('menu')
+}
+
+// The next bit dynamically loads in the images for the choosers
+
+async function loadImages () {
+  const assets = await getAssets(clientId) // Self-explanatory i'd say
+
+  let assetElementsLg = '<select id="imagelg" class="form-control"><option>No Large Image</option>' // The first options
+  let assetElementsSm = '<select id="imagesm" class="form-control"><option>No Small Image</option>'
+  const namesOfAssets = []
+
+  assets.forEach(asset => {
+    namesOfAssets.push(asset.name) // cycle through the assets and make an array of strings, because it can be sorted
+  })
+  namesOfAssets.sort() // sordit
+  namesOfAssets.forEach(asset => {
+    assetElementsLg += `<option>${asset}</option>` // add the options as strings
+    assetElementsSm += `<option>${asset}</option>`
+  })
+  assetElementsLg += '</select>' // add the ending 'bracket'
+  assetElementsSm += '</select>'
+  $('#imagelg').replaceWith(assetElementsLg) // and finally put it in
+  $('#imagesm').replaceWith(assetElementsSm)
 }
