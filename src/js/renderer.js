@@ -53,8 +53,8 @@ async function update () {
       startTimestamp: $('#timer').val() == 'Yes Timer',
       largeImageKey: $('#imagelg').val() == 'No Large Image' ? undefined : $('#imagelg').val().toLowerCase(),
       smallImageKey: $('#imagesm').val() == 'No Large Image' ? undefined : $('#imagesm').val().toLowerCase(),
-      largeImageText: $('imagelgText').val(),
-      smallImageText: $('imagesmText').val(),
+      largeImageText: $('#imagelgText').val(),
+      smallImageText: $('#imagesmText').val(),
       instance: false
     }
 
@@ -163,4 +163,20 @@ async function loadImages () {
   assetElementsSm += '</select>'
   $('#imagelg').replaceWith(assetElementsLg) // and finally put it in
   $('#imagesm').replaceWith(assetElementsSm)
+}
+
+async function getAssets (id) {
+  url = `https://discordapp.com/api/v6/oauth2/applications/${id}/assets`
+
+  const assets = await fetch(url)
+    .then(response => {
+      return response.json()
+    })
+    .then(data => {
+      returns = data
+      return data
+    })
+  if (assets.code !== undefined) {
+    return 'INVALID_ID_ERROR'
+  } else { return assets }
 }
