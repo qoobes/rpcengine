@@ -35,5 +35,12 @@ function kel () {
     alert('Invalid Client ID!')
   } else {
     ipcRenderer.send('advanced', customClientId)
+    $('#multiSelect').replaceWith('<p class="text-success small ml-3" >Sucessfully set new client id! Wait 10-15 seconds for changes to apply.</p>')
+  	$('#clientButton').replaceWith('<button class="btn button success" id="clientButton" onclick="exit()">Exit</button>')
+  	$('#helpText').toggleClass('success')
   }
+}
+
+function exit () {
+  ipcRenderer.send('exitSettings')
 }
