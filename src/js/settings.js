@@ -21,26 +21,52 @@
 // SOFTWARE.
 
 // This file regulates the settings window
-
-var customClientId
+var url, customClientId, returns
 // Function for opening the wiki in another browser window
 function wiki () {
   require('electron').shell.openExternal('https://github.com/theqoobee/rpcengine/wiki')
 }
 
 // save the client id and shoot it to main
-function kel () {
+async function kel () {
   customClientId = $('#ClientId').val()
-  if (customClientId.length !== 18) {
-    alert('Invalid Client ID!')
-  } else {
+
+  if (await prove(customClientId)) {
     ipcRenderer.send('advanced', customClientId)
     $('#multiSelect').replaceWith('<p class="text-success small ml-3" >Sucessfully set new client id! Wait 10-15 seconds for changes to apply.</p>')
-  	$('#clientButton').replaceWith('<button class="btn button success" id="clientButton" onclick="exit()">Exit</button>')
-  	$('#helpText').toggleClass('success')
+    $('#clientButton').replaceWith('<button class="btn button success" id="clientButton" onclick="exit()">Exit</button>')
+    $('#helpText').toggleClass('success')
   }
 }
 
 function exit () {
   ipcRenderer.send('exitSettings')
+}
+
+async function prove (id) {
+  if (id.length !== 18) {
+  	alert('Wrong clientId: too short')
+    return false
+  }
+  if (await getAssets(id) === 'INVALID_ID_ERROR') {
+  	alert('Wrong clientId: doesn\'t exist')
+    return false
+  }
+  return true
+}
+
+async function getAssets (id) {
+  url = `https://discordapp.com/api/v6/oauth2/applications/${id}/assets`
+
+  const assets = await fetch(url)
+    .then(response => {
+      return response.json()
+    })
+    .then(data => {
+      returns = data
+      return data
+    })
+  if (assets.code !== undefined) {
+    	return 'INVALID_ID_ERROR'
+  } else { return assets }
 }
