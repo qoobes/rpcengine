@@ -1,70 +1,37 @@
 {
   "name": "rpcengine",
   "productName": "rpcengine",
-  "version": "0.0.5",
-  "description": "My Electron application description",
+  "version": "2.4.0",
+  "description": "A free way to customize discord richpresence",
   "main": "src/main.js",
   "scripts": {
-    "start": "electron-forge start",
-    "package": "electron-forge package",
-    "make": "electron-forge make",
-    "publish": "electron-forge publish",
-    "lint": "echo \"No linting configured\""
+    "start": "electron .",
+    "dist:windows": "electron-builder --windows",
+    "dist:linux": "electron-builder --linux",
+    "lint": "eslint-config-standard"
   },
   "keywords": [
     "discord",
     "rpc",
     "electron"
   ],
-  "author": "theqoobee",
+  "author": "theqoobee <qoobeethegreat@gmail.com>",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/theqoobee/rpcengine.git"
   },
   "license": "MIT",
-  "config": {
-    "forge": {
-      "packagerConfig": {},
-      "makers": [
-        {
-          "name": "@electron-forge/maker-squirrel",
-          "config": {
-            "name": "rpcengine"
-          }
-        },
-        {
-          "name": "@electron-forge/maker-zip",
-          "platforms": [
-            "darwin"
-          ]
-        },
-        {
-          "name": "@electron-forge/maker-deb",
-          "config": {}
-        },
-        {
-          "name": "@electron-forge/maker-rpm",
-          "config": {}
-        }
-      ]
-    }
-  },
   "dependencies": {
     "discord-rpc": "^3.1.0",
-    "electron-squirrel-startup": "^1.0.0",
     "jquery": "^3.4.1",
     "lodash.isequal": "^4.5.0",
     "npm": "^6.13.6",
     "standard": "^14.3.1"
   },
   "devDependencies": {
-    "@electron-forge/cli": "^6.0.0-beta.47",
-    "@electron-forge/maker-deb": "^6.0.0-beta.47",
-    "@electron-forge/maker-rpm": "^6.0.0-beta.47",
-    "@electron-forge/maker-squirrel": "^6.0.0-beta.47",
-    "@electron-forge/maker-zip": "^6.0.0-beta.47",
     "decache": "^4.5.1",
     "electron": "7.1.8",
+    "electron-builder": "^22.3.2",
     "eslint": "^6.8.0",
     "eslint-config-standard": "^14.1.0",
     "eslint-plugin-import": "^2.20.0",
@@ -75,5 +42,16 @@
   "bugs": {
     "url": "https://github.com/theqoobee/rpcengine/issues"
   },
-  "homepage": "https://github.com/theqoobee/rpcengine#readme"
+  "homepage": "https://github.com/theqoobee/rpcengine#readme",
+  "build": {
+    "appId": "com.theqoobee.rpcengine",
+    "linux": {
+      "target": [
+        "deb",
+        "snap",
+        "rpm"
+      ],
+      "category": "Utility"
+    }
+  }
 }
