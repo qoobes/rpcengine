@@ -45,7 +45,7 @@ var rpc = new DiscordRPC.Client({ transport: 'ipc' }) // setting up the richpres
 //
 // It sends a synchornous message to main via ipcRenderer, and as a result gets either false, meaning there
 // were no changes, or a changed version of the arguments
-
+ipcRenderer.send('info')
 async function check () {
   var update = ipcRPC.sendSync('check', username) // passing the username as an argument
   if (update.args) { // If back is true, in other words if it isn't false, null, or undefined
@@ -93,6 +93,10 @@ function clientUpdate () {
   rpc.login({ clientId }).catch(console.error) // register with the new client id
   loadImages()
 }
+
+ipcRenderer.on('destroy', () => {
+  rpc.destroy()
+})
 
 // Login to finalize everything
 rpc.login({ clientId }).catch(console.error) // again resolve failed promise
