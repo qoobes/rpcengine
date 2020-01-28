@@ -29,7 +29,7 @@ const url = require('url')
 const isEqual = require('lodash.isequal')
 
 // Set the mode to development
-process.env.NODE_ENV = 'development'
+process.env.NODE_ENV = 'production'
 
 // This is to prevent the app from launching lots of times during
 // installation on windows
@@ -48,6 +48,7 @@ const createWindow = () => {
     width: 800,
     height: 450,
     vibrancy: 'dark', // mac only
+    resizable: false,
     webPreferences: {
       nodeIntegration: true // Make sure node is there
     }
@@ -55,11 +56,11 @@ const createWindow = () => {
 
   // mainWindow.openDevTools()
 
-  // this is temporary
+  // // this is temporary
 
-  if (!menu) {
-    mainWindow.removeMenu()
-  }
+  // if (!menu) {
+  //   mainWindow.removeMenu()
+  // }
   // Load the correct file
   mainWindow.loadFile(path.join(__dirname, 'index.html'))
 
@@ -106,6 +107,7 @@ function createSettingWindow () {
     width: 600,
     height: 300,
     vibrancy: 'dark', // mac only
+    resizable: false,
     webPreferences: {
       nodeIntegration: true // Make sure node is there
     }
@@ -113,10 +115,10 @@ function createSettingWindow () {
 
   // settingWindow.openDevTools()
 
-  // settingWindow.removeMenu() // I don't need the menu there, it's ew.
-  if (!menu) {
-    settingWindow.removeMenu()
-  }// this is again temporary
+  // // settingWindow.removeMenu() // I don't need the menu there, it's ew.
+  // if (!menu) {
+  //   settingWindow.removeMenu()
+  // }// this is again temporary
 
   // Load the correct file
   settingWindow.loadFile(path.join(__dirname, 'settings.html'))
@@ -180,14 +182,14 @@ ipcMain.on('exitSettings', (event) => {
   }
 })
 
-// To be removed for production
-// This just toggles the menu so i don't have to restart the app every time i want to see what it looks like without it
-ipcMain.on('menu', (event) => {
-  menu = !menu
-  mainWindow.close()
-  if (settingWindow) {
-    settingWindow.close()
-    createSettingWindow()
-  }
-  // createWindow()
-}) // THIS PART REALLY NEEDS REMOVAL LATER ^^^^^
+// // To be removed for production
+// // This just toggles the menu so i don't have to restart the app every time i want to see what it looks like without it
+// ipcMain.on('menu', (event) => {
+//   menu = !menu
+//   mainWindow.close()
+//   if (settingWindow) {
+//     settingWindow.close()
+//     createSettingWindow()
+//   }
+//   // createWindow()
+// }) // THIS PART REALLY NEEDS REMOVAL LATER ^^^^^
