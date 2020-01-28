@@ -25,9 +25,9 @@ Normal rich presence is **not** customizable, and that's the purpose of **rpceng
 
 ***
 
-<img width="260px" src="https://github.com/theqoobee/rpcengine/blob/master/icons/therpcimage.png?raw=true#thumbnail">
+<img width="250px" src="https://github.com/theqoobee/rpcengine/blob/master/icons/therpcimage.png?raw=true#thumbnail">
 
-<img width="710px" src="https://github.com/theqoobee/rpcengine/blob/master/icons/semishort_rounded.png?raw=true">
+<img width="700px" src="https://github.com/theqoobee/rpcengine/blob/master/icons/semishort_rounded.png?raw=true">
 
 ***
 
