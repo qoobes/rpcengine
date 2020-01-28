@@ -27,7 +27,7 @@ const path = require('path')
 const url = require('url')
 // const rpc = require('./js/rpc.js');
 const isEqual = require('lodash.isequal')
-
+var rpcjs
 // Set the mode to development
 process.env.NODE_ENV = 'production'
 
@@ -59,7 +59,7 @@ const createWindow = () => {
   // // this is temporary
 
   // if (!menu) {
-  //   mainWindow.removeMenu()
+  mainWindow.removeMenu()
   // }
   // Load the correct file
   mainWindow.loadFile(path.join(__dirname, 'index.html'))
@@ -81,9 +81,8 @@ app.on('window-all-closed', () => {
   // This is because mac allows all windows to be closed with
   // the app still staying open
   if (process.platform !== 'darwin') {
-    // app.quit(); // quit the app
-    createWindow()
-    // rpc.destroy()
+    rpcjs.send('destroy')
+    app.quit() // quit the app
   }
 })
 
@@ -99,7 +98,9 @@ app.on('activate', () => {
 let settingWindow
 
 ipcMain.on('settings', (event) => {
-  createSettingWindow()
+  if (settingWindow === undefined || settingWindow === null) {
+    createSettingWindow()
+  }
 })
 function createSettingWindow () {
   settingWindow = new BrowserWindow({ // Setting the dimnesions
@@ -115,9 +116,9 @@ function createSettingWindow () {
 
   // settingWindow.openDevTools()
 
-  // // settingWindow.removeMenu() // I don't need the menu there, it's ew.
+  settingWindow.removeMenu() // I don't need the menu there, it's ew.
   // if (!menu) {
-  //   settingWindow.removeMenu()
+  // settingWindow.removeMenu()
   // }// this is again temporary
 
   // Load the correct file
@@ -174,6 +175,10 @@ ipcMain.on('check', (event, args) => {
 ipcMain.on('advanced', (event, args) => {
   changed.clientId = true
   customClientId = args
+})
+
+ipcMain.on('info', (event) => {
+  rpcjs = event.sender
 })
 
 ipcMain.on('exitSettings', (event) => {
