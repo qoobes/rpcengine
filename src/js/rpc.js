@@ -99,4 +99,8 @@ ipcRenderer.on('destroy', () => {
 })
 
 // Login to finalize everything
-rpc.login({ clientId }).catch(console.error) // again resolve failed promise
+rpc.login({ clientId }).catch((err) => {
+	console.log(`${err}`)
+	alert('Could not connect to discord')
+	change()
+}) // again resolve failed promise
