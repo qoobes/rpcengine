@@ -29,12 +29,6 @@ const url = require('url')
 const isEqual = require('lodash.isequal')
 var rpcjs
 
-// This is to prevent the app from launching lots of times during
-// installation on windows
-if (require('electron-squirrel-startup')) {
-  app.quit()
-}
-
 // Set the mode to development
 process.env.NODE_ENV = 'production'
 
