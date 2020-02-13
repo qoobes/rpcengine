@@ -45,6 +45,7 @@
   },
   "homepage": "https://github.com/theqoobee/rpcengine#readme",
   "build": {
+    "icon": "icon.png",
     "appId": "com.theqoobee.rpcengine",
     "linux": {
       "target": [

@@ -40,9 +40,9 @@ let mainWindow
 
 const createWindow = () => {
   mainWindow = new BrowserWindow({ // Setting the dimnesions
-    icon: 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn2.iconfinder.com%2Fdata%2Ficons%2Fios-7-icons%2F50%2Fengine-512.png&f=1&nofb=1',
     width: 800,
     height: 450,
+    icon: path.join(__dirname, 'icon.png'),
     vibrancy: 'dark', // mac only
     resizable: false,
     webPreferences: {
