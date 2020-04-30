@@ -23,7 +23,7 @@
   "license": "MIT",
   "dependencies": {
     "discord-rpc": "^3.1.0",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "lodash.isequal": "^4.5.0",
     "npm": "^6.13.6",
     "standard": "^14.3.1"
